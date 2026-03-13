@@ -1,0 +1,10 @@
+^C:\USERS\EDUARDA\DOWNLOADS\SOURCE AND CMAKE FILES (1)\BUILD\CMAKEFILES\C3708A741CF68D256957A9C4E21AC7A7\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Eduarda/Downloads/source and cmake files (1)" "-BC:/Users/Eduarda/Downloads/source and cmake files (1)/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Eduarda/Downloads/source and cmake files (1)/build/class6.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
