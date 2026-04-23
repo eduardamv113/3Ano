@@ -1,0 +1,1424 @@
+node n1 {
+    type router
+    model router
+    network-config {
+	hostname Router1
+	!
+	interface eth4
+	 ip address 10.0.27.1/24
+	 ipv6 address 2001:27::1/64
+	!
+	interface eth2
+	 ip address 10.0.18.1/24
+	 ipv6 address 2001:18::1/64
+	!
+	interface eth3
+	 ip address 10.0.8.1/24
+	 ipv6 address 2001:8::1/64
+	!
+	interface eth1
+	 ip address 10.0.6.2/24
+	 ipv6 address 2001:6::2/64
+	!
+	interface eth0
+	 ip address 10.0.0.1/24
+	 ipv6 address 2001:0::1/64
+	!
+    }
+    canvas c1
+    iconcoords {411.0 328.0}
+    labelcoords {453.0 313.0}
+    interface-peer {eth0 n2}
+    interface-peer {eth1 n6}
+    interface-peer {eth3 n7}
+    services {OSPFv2 OSPFv3 zebra IPForward}
+    interface-peer {eth2 n20}
+    interface-peer {eth4 n42}
+}
+
+node n2 {
+    type router
+    model router
+    network-config {
+	hostname Router2
+	!
+	interface eth6
+	 ip address 10.0.23.1/24
+	 ipv6 address 2001:23::1/64
+	!
+	interface eth5
+	 ip address 10.0.11.1/24
+	 ipv6 address 2001:11::1/64
+	!
+	interface eth4
+	 ip address 10.0.7.2/24
+	 ipv6 address 2001:7::2/64
+	!
+	interface eth2
+	 ip address 10.0.10.1/24
+	 ipv6 address 2001:10::1/64
+	!
+	interface eth3
+	 ip address 10.0.9.2/24
+	 ipv6 address 2001:9::2/64
+	!
+	interface eth1
+	 ip address 10.0.1.1/24
+	 ipv6 address 2001:1::1/64
+	!
+	interface eth0
+	 ip address 10.0.0.2/24
+	 ipv6 address 2001:0::2/64
+	!
+    }
+    canvas c1
+    iconcoords {484.0 410.0}
+    labelcoords {494.0 378.0}
+    interface-peer {eth0 n1}
+    interface-peer {eth1 n7}
+    interface-peer {eth3 n4}
+    interface-peer {eth2 n5}
+    interface-peer {eth4 n6}
+    interface-peer {eth5 n3}
+    interface-peer {eth6 n44}
+}
+
+node n3 {
+    type router
+    model router
+    network-config {
+	hostname Router3
+	!
+	interface eth4
+	 ip address 10.0.26.1/24
+	 ipv6 address 2001:26::1/64
+	!
+	interface eth3
+	 ip address 10.0.24.1/24
+	 ipv6 address 2001:24::1/64
+	!
+	interface eth6
+	 ip address 10.0.25.1/24
+	 ipv6 address 2001:25::1/64
+	!
+	interface eth5
+	 ip address 10.0.20.1/24
+	 ipv6 address 2001:20::1/64
+	!
+	interface eth2
+	 ip address 10.0.11.2/24
+	 ipv6 address 2001:11::2/64
+	!
+	interface eth1
+	 ip address 10.0.3.1/24
+	 ipv6 address 2001:3::1/64
+	!
+	interface eth0
+	 ip address 10.0.2.2/24
+	 ipv6 address 2001:2::2/64
+	!
+    }
+    canvas c1
+    iconcoords {645.0 406.0}
+    labelcoords {684.0 390.0}
+    interface-peer {eth0 n7}
+    interface-peer {eth1 n4}
+    interface-peer {eth2 n2}
+    interface-peer {eth5 n38}
+    interface-peer {eth6 n39}
+    interface-peer {eth3 n34}
+    interface-peer {eth4 n35}
+}
+
+node n4 {
+    type router
+    model router
+    network-config {
+	hostname Router4
+	!
+	interface eth3
+	 ip address 10.0.17.1/24
+	 ipv6 address 2001:17::1/64
+	!
+	interface eth4
+	 ip address 10.0.22.1/24
+	 ipv6 address 2001:22::1/64
+	!
+	interface eth2
+	 ip address 10.0.9.1/24
+	 ipv6 address 2001:9::1/64
+	!
+	interface eth1
+	 ip address 10.0.4.1/24
+	 ipv6 address 2001:4::1/64
+	!
+	interface eth0
+	 ip address 10.0.3.2/24
+	 ipv6 address 2001:3::2/64
+	!
+    }
+    canvas c1
+    iconcoords {580.0 479.0}
+    labelcoords {557.0 519.0}
+    interface-peer {eth0 n3}
+    interface-peer {eth1 n5}
+    interface-peer {eth2 n2}
+    interface-peer {eth4 n41}
+    interface-peer {eth3 n31}
+}
+
+node n5 {
+    type router
+    model router
+    network-config {
+	hostname Router5
+	!
+	interface eth3
+	 ip address 10.0.16.1/24
+	 ipv6 address 2001:16::1/64
+	!
+	interface eth4
+	 ip address 10.0.21.1/24
+	 ipv6 address 2001:21::1/64
+	!
+	interface eth0
+	 ip address 10.0.4.2/24
+	 ipv6 address 2001:4::2/64
+	!
+	interface eth2
+	 ip address 10.0.10.2/24
+	 ipv6 address 2001:10::2/64
+	!
+	interface eth1
+	 ip address 10.0.5.1/24
+	 ipv6 address 2001:5::1/64
+	!
+    }
+    canvas c1
+    iconcoords {411.0 479.0}
+    labelcoords {449.0 516.0}
+    interface-peer {eth0 n4}
+    interface-peer {eth1 n6}
+    interface-peer {eth2 n2}
+    interface-peer {eth4 n40}
+    interface-peer {eth3 n30}
+}
+
+node n6 {
+    type router
+    model router
+    network-config {
+	hostname Router6
+	!
+	interface eth6
+	 ip address 10.0.15.1/24
+	 ipv6 address 2001:15::1/64
+	!
+	interface eth5
+	 ip address 10.0.14.1/24
+	 ipv6 address 2001:14::1/64
+	!
+	interface eth4
+	 ip address 10.0.13.1/24
+	 ipv6 address 2001:13::1/64
+	!
+	interface eth3
+	 ip address 10.0.12.1/24
+	 ipv6 address 2001:12::1/64
+	!
+	interface eth2
+	 ip address 10.0.7.1/24
+	 ipv6 address 2001:7::1/64
+	!
+	interface eth1
+	 ip address 10.0.6.1/24
+	 ipv6 address 2001:6::1/64
+	!
+	interface eth0
+	 ip address 10.0.5.2/24
+	 ipv6 address 2001:5::2/64
+	!
+    }
+    canvas c1
+    iconcoords {344.0 405.0}
+    labelcoords {325.0 389.0}
+    interface-peer {eth0 n5}
+    interface-peer {eth1 n1}
+    interface-peer {eth2 n2}
+    interface-peer {eth3 n8}
+    interface-peer {eth4 n11}
+    interface-peer {eth5 n9}
+    interface-peer {eth6 n17}
+}
+
+node n7 {
+    type router
+    model router
+    network-config {
+	hostname Router7
+	!
+	interface eth4
+	 ip address 10.0.28.1/24
+	 ipv6 address 2001:28::1/64
+	!
+	interface eth2
+	 ip address 10.0.19.1/24
+	 ipv6 address 2001:19::1/64
+	!
+	interface eth3
+	 ip address 10.0.8.2/24
+	 ipv6 address 2001:8::2/64
+	!
+	interface eth1
+	 ip address 10.0.2.1/24
+	 ipv6 address 2001:2::1/64
+	!
+	interface eth0
+	 ip address 10.0.1.2/24
+	 ipv6 address 2001:1::2/64
+	!
+    }
+    canvas c1
+    iconcoords {574.0 330.0}
+    labelcoords {531.0 319.0}
+    interface-peer {eth0 n2}
+    interface-peer {eth1 n3}
+    interface-peer {eth3 n1}
+    interface-peer {eth2 n26}
+    interface-peer {eth4 n43}
+}
+
+node n15 {
+    type router
+    model PC
+    network-config {
+	hostname CL2
+	!
+	interface eth0
+	 ip address 10.0.16.20/24
+	 ipv6 address 2001:16::20/64
+	!
+    }
+    canvas c1
+    iconcoords {273.0 637.0}
+    labelcoords {273.0 672.0}
+    custom-config {
+	custom-config-id service:DefaultRoute
+	custom-command DefaultRoute
+	config {
+	files=('defaultroute.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:DefaultRoute:defaultroute.sh
+	custom-command defaultroute.sh
+	config {
+	#!/bin/sh
+	# auto-generated by DefaultRoute service (utility.py)
+	ip route add default via 10.0.16.1
+	ip route add default via 2001:1:1::254
+	
+	}
+    }
+    custom-config {
+	custom-config-id service:UserDefined
+	custom-command UserDefined
+	config {
+	files=('preenche_resolvconf.sh', )
+	cmdup=('mkdir /run/resolvconf', 'touch /run/resolvconf/resolv.conf', 'sh preenche_resolvconf.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:UserDefined:preenche_resolvconf.sh
+	custom-command preenche_resolvconf.sh
+	config {
+	echo "# -- gerado pela script de arranque..." >> /etc/resolv.conf
+	echo "domain cc.pt" >> /etc/resolv.conf
+	echo "nameserver 10.2.2.1" >> /etc/resolv.conf
+	echo "" >> /etc/resolv.conf 
+	}
+    }
+    custom-config {
+	custom-config-id service:StaticRoute
+	custom-command StaticRoute
+	config {
+	files=('staticroute.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:StaticRoute:staticroute.sh
+	custom-command staticroute.sh
+	config {
+	#!/bin/sh
+	# auto-generated by StaticRoute service (utility.py)
+	#
+	# NOTE: this service must be customized to be of any use
+	#       Below are samples that you can uncomment and edit.
+	#
+	#/sbin/ip route add 10.9.8.0/24 via 10.4.4.254
+	#/sbin/ip route add 3ffe:4::/64 via 2001:4:4::254
+	
+	}
+    }
+    services {DefaultRoute StaticRoute UserDefined}
+    interface-peer {eth0 n30}
+}
+
+node n24 {
+    type router
+    model host
+    network-config {
+	hostname SS2
+	!
+	interface eth0
+	 ip address 10.0.13.10/24
+	 ipv6 address 2001:13::10/64
+	!
+    }
+    canvas c1
+    iconcoords {38.0 207.0}
+    labelcoords {38.0 239.0}
+    interface-peer {eth0 n11}
+}
+
+node n25 {
+    type router
+    model host
+    network-config {
+	hostname SS1
+	!
+	interface eth0
+	 ip address 10.0.12.11/24
+	 ipv6 address 2001:12::11/64
+	!
+    }
+    canvas c1
+    iconcoords {29.0 331.0}
+    labelcoords {29.0 363.0}
+    interface-peer {eth0 n8}
+}
+
+node n27 {
+    type router
+    model host
+    network-config {
+	hostname SR1
+	!
+	interface eth0
+	 ip address 10.0.13.11/24
+	 ipv6 address 2001:13::11/64
+	!
+    }
+    canvas c1
+    iconcoords {30.0 273.0}
+    labelcoords {30.0 305.0}
+    interface-peer {eth0 n11}
+}
+
+node n13 {
+    type router
+    model PC
+    network-config {
+	hostname CL1
+	!
+	interface eth0
+	 ip address 10.0.18.20/24
+	 ipv6 address 2001:18::20/64
+	!
+    }
+    canvas c1
+    iconcoords {190.0 101.0}
+    labelcoords {190.0 133.0}
+    interface-peer {eth0 n20}
+}
+
+node n14 {
+    type router
+    model host
+    network-config {
+	hostname SP2
+	!
+	interface eth0
+	 ip address 10.0.16.10/24
+	 ipv6 address 2001:16::10/64
+	!
+    }
+    canvas c1
+    iconcoords {64.0 644.0}
+    labelcoords {64.0 676.0}
+    custom-config {
+	custom-config-id service:DefaultRoute
+	custom-command DefaultRoute
+	config {
+	files=('defaultroute.sh', )
+	}
+    }
+    custom-config {
+	custom-config-id service:DefaultRoute:defaultroute.sh
+	custom-command defaultroute.sh
+	config {
+	#!/bin/sh
+	# auto-generated by DefaultRoute service (utility.py)
+	ip route add default via 10.0.16.1
+	ip route add default via 2001:14::1
+	
+	}
+    }
+    services {DefaultRoute SSH}
+    interface-peer {eth0 n30}
+}
+
+node n21 {
+    type router
+    model host
+    network-config {
+	hostname SS3
+	!
+	interface eth0
+	 ip address 10.0.15.10/24
+	 ipv6 address 2001:15::10/64
+	!
+    }
+    canvas c1
+    iconcoords {33.0 590.0}
+    labelcoords {33.0 622.0}
+    interface-peer {eth0 n17}
+}
+
+node n28 {
+    type router
+    model host
+    network-config {
+	hostname SR2
+	!
+	interface eth0
+	 ip address 10.0.15.11/24
+	 ipv6 address 2001:15::11/64
+	!
+    }
+    canvas c1
+    iconcoords {28.0 520.0}
+    labelcoords {28.0 552.0}
+    interface-peer {eth0 n17}
+}
+
+node n29 {
+    type router
+    model host
+    network-config {
+	hostname SS4
+	!
+	interface eth0
+	 ip address 10.0.14.11/24
+	 ipv6 address 2001:14::11/64
+	!
+    }
+    canvas c1
+    iconcoords {45.0 445.0}
+    labelcoords {45.0 477.0}
+    interface-peer {eth0 n9}
+}
+
+node n22 {
+    type router
+    model host
+    network-config {
+	hostname SS6
+	!
+	interface eth0
+	 ip address 10.0.24.10/24
+	 ipv6 address 2001:24::10/64
+	!
+    }
+    canvas c1
+    iconcoords {909.0 614.0}
+    labelcoords {909.0 646.0}
+    interface-peer {eth0 n34}
+}
+
+node n32 {
+    type router
+    model host
+    network-config {
+	hostname SR3
+	!
+	interface eth0
+	 ip address 10.0.24.11/24
+	 ipv6 address 2001:24::11/64
+	!
+    }
+    canvas c1
+    iconcoords {953.0 521.0}
+    labelcoords {953.0 553.0}
+    interface-peer {eth0 n34}
+}
+
+node n33 {
+    type router
+    model host
+    network-config {
+	hostname SS5
+	!
+	interface eth0
+	 ip address 10.0.26.10/24
+	 ipv6 address 2001:26::10/64
+	!
+    }
+    canvas c1
+    iconcoords {958.0 452.0}
+    labelcoords {958.0 484.0}
+    interface-peer {eth0 n35}
+}
+
+node n18 {
+    type router
+    model PC
+    network-config {
+	hostname CL4
+	!
+	interface eth0
+	 ip address 10.0.19.20/24
+	 ipv6 address 2001:19::20/64
+	!
+    }
+    canvas c1
+    iconcoords {674.0 113.0}
+    labelcoords {674.0 145.0}
+    interface-peer {eth0 n26}
+}
+
+node n19 {
+    type router
+    model host
+    network-config {
+	hostname SP4
+	!
+	interface eth0
+	 ip address 10.0.19.10/24
+	 ipv6 address 2001:19::10/64
+	!
+    }
+    canvas c1
+    iconcoords {882.0 119.0}
+    labelcoords {882.0 151.0}
+    interface-peer {eth0 n26}
+}
+
+node n23 {
+    type router
+    model host
+    network-config {
+	hostname SS8
+	!
+	interface eth0
+	 ip address 10.0.20.10/24
+	 ipv6 address 2001:20::10/64
+	!
+    }
+    canvas c1
+    iconcoords {947.0 160.0}
+    labelcoords {947.0 192.0}
+    interface-peer {eth0 n38}
+}
+
+node n36 {
+    type router
+    model host
+    network-config {
+	hostname SR4
+	!
+	interface eth0
+	 ip address 10.0.20.11/24
+	 ipv6 address 2001:20::11/64
+	!
+    }
+    canvas c1
+    iconcoords {969.0 271.0}
+    labelcoords {969.0 303.0}
+    interface-peer {eth0 n38}
+}
+
+node n37 {
+    type router
+    model host
+    network-config {
+	hostname SS7
+	!
+	interface eth0
+	 ip address 10.0.25.10/24
+	 ipv6 address 2001:25::10/64
+	!
+    }
+    canvas c1
+    iconcoords {961.0 340.0}
+    labelcoords {961.0 372.0}
+    interface-peer {eth0 n39}
+}
+
+node n40 {
+    type router
+    model host
+    network-config {
+	hostname ST1
+	!
+	interface eth0
+	 ip address 10.0.21.10/24
+	 ipv6 address 2001:21::10/64
+	!
+    }
+    canvas c1
+    iconcoords {413.0 632.0}
+    labelcoords {413.0 664.0}
+    interface-peer {eth0 n5}
+}
+
+node n41 {
+    type router
+    model host
+    network-config {
+	hostname ST2
+	!
+	interface eth0
+	 ip address 10.0.22.10/24
+	 ipv6 address 2001:22::10/64
+	!
+    }
+    canvas c1
+    iconcoords {567.0 634.0}
+    labelcoords {567.0 666.0}
+    interface-peer {eth0 n4}
+}
+
+node n42 {
+    type router
+    model host
+    network-config {
+	hostname ST3
+	!
+	interface eth0
+	 ip address 10.0.27.10/24
+	 ipv6 address 2001:27::10/64
+	!
+    }
+    canvas c1
+    iconcoords {418.0 92.0}
+    labelcoords {418.0 124.0}
+    interface-peer {eth0 n1}
+}
+
+node n12 {
+    type router
+    model host
+    network-config {
+	hostname SP1
+	!
+	interface eth0
+	 ip address 10.0.18.10/24
+	 ipv6 address 2001:18::10/64
+	!
+    }
+    canvas c1
+    iconcoords {51.0 140.0}
+    labelcoords {51.0 172.0}
+    interface-peer {eth0 n20}
+}
+
+node n10 {
+    type router
+    model PC
+    network-config {
+	hostname CL3
+	!
+	interface eth0
+	 ip address 10.0.17.20/24
+	 ipv6 address 2001:17::20/64
+	!
+    }
+    canvas c1
+    iconcoords {676.0 665.0}
+    labelcoords {676.0 697.0}
+    interface-peer {eth0 n31}
+}
+
+node n16 {
+    type router
+    model host
+    network-config {
+	hostname SP3
+	!
+	interface eth0
+	 ip address 10.0.17.10/24
+	 ipv6 address 2001:17::10/64
+	!
+    }
+    canvas c1
+    iconcoords {853.0 647.0}
+    labelcoords {853.0 679.0}
+    interface-peer {eth0 n31}
+}
+
+node n8 {
+    type lanswitch
+    network-config {
+	hostname n8
+	!
+    }
+    canvas c1
+    iconcoords {158.0 348.0}
+    labelcoords {158.0 372.0}
+    interface-peer {e0 n6}
+    interface-peer {e2 n25}
+}
+
+node n11 {
+    type lanswitch
+    network-config {
+	hostname n11
+	!
+    }
+    canvas c1
+    iconcoords {176.0 284.0}
+    labelcoords {176.0 308.0}
+    interface-peer {e0 n6}
+    interface-peer {e1 n24}
+    interface-peer {e2 n27}
+}
+
+node n20 {
+    type lanswitch
+    network-config {
+	hostname n20
+	!
+    }
+    canvas c1
+    iconcoords {202.0 206.0}
+    labelcoords {202.0 230.0}
+    interface-peer {e0 n1}
+    interface-peer {e1 n12}
+    interface-peer {e2 n13}
+}
+
+node n26 {
+    type lanswitch
+    network-config {
+	hostname n26
+	!
+    }
+    canvas c1
+    iconcoords {754.0 187.0}
+    labelcoords {754.0 211.0}
+    interface-peer {e0 n7}
+    interface-peer {e1 n18}
+    interface-peer {e2 n19}
+}
+
+node n38 {
+    type lanswitch
+    network-config {
+	hostname n38
+	!
+    }
+    canvas c1
+    iconcoords {823.0 264.0}
+    labelcoords {823.0 288.0}
+    interface-peer {e0 n23}
+    interface-peer {e1 n36}
+    interface-peer {e2 n3}
+}
+
+node n39 {
+    type lanswitch
+    network-config {
+	hostname n39
+	!
+    }
+    canvas c1
+    iconcoords {823.0 346.0}
+    labelcoords {823.0 370.0}
+    interface-peer {e0 n3}
+    interface-peer {e1 n37}
+}
+
+node n9 {
+    type lanswitch
+    network-config {
+	hostname n9
+	!
+    }
+    canvas c1
+    iconcoords {187.0 452.0}
+    labelcoords {187.0 476.0}
+    interface-peer {e0 n6}
+    interface-peer {e2 n29}
+}
+
+node n17 {
+    type lanswitch
+    network-config {
+	hostname n17
+	!
+    }
+    canvas c1
+    iconcoords {190.0 526.0}
+    labelcoords {190.0 550.0}
+    interface-peer {e0 n6}
+    interface-peer {e1 n21}
+    interface-peer {e2 n28}
+}
+
+node n30 {
+    type lanswitch
+    network-config {
+	hostname n30
+	!
+    }
+    canvas c1
+    iconcoords {218.0 580.0}
+    labelcoords {218.0 604.0}
+    interface-peer {e0 n14}
+    interface-peer {e1 n15}
+    interface-peer {e2 n5}
+}
+
+node n31 {
+    type lanswitch
+    network-config {
+	hostname n31
+	!
+    }
+    canvas c1
+    iconcoords {707.0 582.0}
+    labelcoords {707.0 606.0}
+    interface-peer {e0 n10}
+    interface-peer {e1 n16}
+    interface-peer {e2 n4}
+}
+
+node n34 {
+    type lanswitch
+    network-config {
+	hostname n34
+	!
+    }
+    canvas c1
+    iconcoords {820.0 515.0}
+    labelcoords {820.0 539.0}
+    interface-peer {e0 n22}
+    interface-peer {e1 n32}
+    interface-peer {e2 n3}
+}
+
+node n35 {
+    type lanswitch
+    network-config {
+	hostname n35
+	!
+    }
+    canvas c1
+    iconcoords {820.0 448.0}
+    labelcoords {820.0 472.0}
+    interface-peer {e0 n3}
+    interface-peer {e1 n33}
+}
+
+node n43 {
+    type router
+    model host
+    network-config {
+	hostname SP5
+	!
+	interface eth0
+	 ip address 10.0.28.10/24
+	 ipv6 address 2001:28::10/64
+	!
+    }
+    canvas c1
+    iconcoords {554.0 96.0}
+    labelcoords {554.0 128.0}
+    interface-peer {eth0 n7}
+}
+
+node n44 {
+    type router
+    model host
+    network-config {
+	hostname SP6
+	!
+	interface eth0
+	 ip address 10.0.23.10/24
+	 ipv6 address 2001:23::10/64
+	!
+    }
+    canvas c1
+    iconcoords {493.0 201.0}
+    labelcoords {493.0 233.0}
+    interface-peer {eth0 n2}
+}
+
+link l1 {
+    nodes {n1 n2}
+    bandwidth 0
+}
+
+link l2 {
+    nodes {n2 n7}
+    bandwidth 0
+}
+
+link l3 {
+    nodes {n7 n3}
+    bandwidth 0
+}
+
+link l4 {
+    nodes {n3 n4}
+    bandwidth 0
+}
+
+link l5 {
+    nodes {n4 n5}
+    bandwidth 0
+}
+
+link l6 {
+    nodes {n5 n6}
+    bandwidth 0
+}
+
+link l7 {
+    nodes {n6 n1}
+    bandwidth 0
+}
+
+link l10 {
+    nodes {n4 n2}
+    bandwidth 0
+}
+
+link l9 {
+    nodes {n1 n7}
+    bandwidth 0
+}
+
+link l11 {
+    nodes {n2 n5}
+    bandwidth 0
+}
+
+link l8 {
+    nodes {n6 n2}
+    bandwidth 0
+}
+
+link l24 {
+    nodes {n2 n3}
+    bandwidth 0
+}
+
+link l45 {
+    nodes {n5 n40}
+    bandwidth 0
+}
+
+link l46 {
+    nodes {n41 n4}
+    bandwidth 0
+}
+
+link l12 {
+    nodes {n8 n6}
+    bandwidth 0
+}
+
+link l15 {
+    nodes {n11 n6}
+    bandwidth 0
+}
+
+link l16 {
+    nodes {n20 n1}
+    bandwidth 0
+}
+
+link l17 {
+    nodes {n12 n20}
+    bandwidth 0
+}
+
+link l18 {
+    nodes {n20 n13}
+    bandwidth 0
+}
+
+link l19 {
+    nodes {n24 n11}
+    bandwidth 0
+}
+
+link l28 {
+    nodes {n25 n8}
+    bandwidth 0
+}
+
+link l29 {
+    nodes {n7 n26}
+    bandwidth 0
+}
+
+link l30 {
+    nodes {n18 n26}
+    bandwidth 0
+}
+
+link l31 {
+    nodes {n26 n19}
+    bandwidth 0
+}
+
+link l32 {
+    nodes {n38 n23}
+    bandwidth 0
+}
+
+link l41 {
+    nodes {n38 n36}
+    bandwidth 0
+}
+
+link l42 {
+    nodes {n38 n3}
+    bandwidth 0
+}
+
+link l43 {
+    nodes {n3 n39}
+    bandwidth 0
+}
+
+link l44 {
+    nodes {n39 n37}
+    bandwidth 0
+}
+
+link l13 {
+    nodes {n9 n6}
+    bandwidth 0
+}
+
+link l14 {
+    nodes {n17 n6}
+    bandwidth 0
+}
+
+link l20 {
+    nodes {n14 n30}
+    bandwidth 0
+}
+
+link l21 {
+    nodes {n30 n15}
+    bandwidth 0
+}
+
+link l22 {
+    nodes {n30 n5}
+    bandwidth 0
+}
+
+link l23 {
+    nodes {n21 n17}
+    bandwidth 0
+}
+
+link l27 {
+    nodes {n29 n9}
+    bandwidth 0
+}
+
+link l33 {
+    nodes {n31 n10}
+    bandwidth 0
+}
+
+link l34 {
+    nodes {n31 n16}
+    bandwidth 0
+}
+
+link l35 {
+    nodes {n34 n22}
+    bandwidth 0
+}
+
+link l36 {
+    nodes {n34 n32}
+    bandwidth 0
+}
+
+link l25 {
+    nodes {n27 n11}
+    bandwidth 0
+}
+
+link l26 {
+    nodes {n28 n17}
+    bandwidth 0
+}
+
+link l37 {
+    nodes {n3 n34}
+    bandwidth 0
+}
+
+link l38 {
+    nodes {n3 n35}
+    bandwidth 0
+}
+
+link l39 {
+    nodes {n35 n33}
+    bandwidth 0
+}
+
+link l40 {
+    nodes {n4 n31}
+    bandwidth 0
+}
+
+link l47 {
+    nodes {n44 n2}
+    bandwidth 0
+}
+
+link l48 {
+    nodes {n42 n1}
+    bandwidth 0
+}
+
+link l49 {
+    nodes {n43 n7}
+    bandwidth 0
+}
+
+annotation a1 {
+    iconcoords {279 252 703 549}
+    type oval
+    label {Back Bone (core)}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #cbecff
+    width 0
+    border black
+    canvas c1
+}
+
+annotation a2 {
+    iconcoords {370.0 18.0}
+    type text
+    label {CC-LEI 2022-2023}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {22}
+    effects {bold}
+    canvas c1
+}
+
+annotation a3 {
+    iconcoords {3 25 376 370}
+    type rectangle
+    label {Domino lon3r}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #ccec00
+    width 0
+    border black
+    rad 28
+    canvas c1
+}
+
+annotation a4 {
+    iconcoords {2 382 360 704}
+    type rectangle
+    label {classico.lon3r}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #ccc300
+    width 0
+    border black
+    rad 25
+    canvas c1
+}
+
+annotation a5 {
+    iconcoords {624.0 379.0 992.0 711.0}
+    type rectangle
+    label {dubai.johny}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #009300
+    width 0
+    border black
+    rad 25
+    canvas c1
+}
+
+annotation a6 {
+    iconcoords {625.0 34.0 998.0 375.0}
+    type rectangle
+    label {Dominio johny}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #00ec03
+    width 0
+    border black
+    rad 25
+    canvas c1
+}
+
+annotation a8 {
+    type text
+    iconcoords {54.0 184.0}
+    label {}
+    canvas c1
+}
+
+annotation a9 {
+    type text
+    iconcoords {682.0 129.0}
+    label {}
+    canvas c1
+}
+
+annotation a10 {
+    iconcoords {52.0 93.0}
+    type text
+    label {}
+    labelcolor #00a900
+    fontfamily {Arial}
+    fontsize {12}
+    canvas c1
+}
+
+annotation a11 {
+    type text
+    iconcoords {62.0 96.0}
+    label {}
+    canvas c1
+}
+
+annotation a13 {
+    type text
+    iconcoords {754.0 165.0}
+    label {}
+    canvas c1
+}
+
+annotation a17 {
+    type text
+    iconcoords {402.0 504.0}
+    label {}
+    canvas c1
+}
+
+annotation a18 {
+    type text
+    iconcoords {414.0 273.0}
+    label {}
+    canvas c1
+}
+
+annotation a21 {
+    type text
+    iconcoords {410.0 570.0}
+    label {}
+    canvas c1
+}
+
+annotation a22 {
+    type text
+    iconcoords {380.0 608.0}
+    label {}
+    canvas c1
+}
+
+annotation a7 {
+    iconcoords {364.0 563.0 619.0 692.0}
+    type rectangle
+    label {.root}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #C0C0FF
+    width 0
+    border black
+    rad 25
+    canvas c1
+}
+
+annotation a12 {
+    iconcoords {367.0 30.0 483.0 143.0}
+    type rectangle
+    label {.reverse}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #c056ff
+    width 0
+    border black
+    rad 25
+    canvas c1
+}
+
+annotation a14 {
+    iconcoords {482.0 31.0 623.0 143.0}
+    type rectangle
+    label {in-addr.reverse}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #a800ff
+    width 0
+    border black
+    rad 25
+    canvas c1
+}
+
+annotation a15 {
+    iconcoords {381.0 146.0 615.0 259.0}
+    type rectangle
+    label {10.in-addr.reverse}
+    labelcolor black
+    fontfamily {Arial}
+    fontsize {12}
+    color #8900cb
+    width 0
+    border black
+    rad 16
+    canvas c1
+}
+
+canvas c1 {
+    name {Canvas1}
+}
+
+option global {
+    interface_names no
+    ip_addresses yes
+    ipv6_addresses no
+    node_labels yes
+    link_labels yes
+    show_api no
+    background_images no
+    annotations yes
+    grid yes
+    traffic_start 0
+}
+
+option session {
+}
+

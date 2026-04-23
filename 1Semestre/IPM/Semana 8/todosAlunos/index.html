@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 id="title">My Todo List</h1>
+      <!-- Alínea 2: output da data do dia de hoje -->
+      <h3 id="list-date" class="subtitle">{{today}}</h3> <!--adicionei a today ao h3-->
+      <div class="container">
+        <!-- Alínea 5: adicionar evento para submit -->
+        <form id="todo-form" @submit.prevent="submitTodo">  <!--chama a função submitTodo ao fazer submit e nao faz refresh automatico-->
+          <label class="input-label" for="task-input">Task</label>
+          <div class="input-container">
+            <!-- Alínea 4: controlar o atributo value e adicionar
+                 evento input -->
+                 <!-- opção 1 com v:bind-->
+            <input 
+              id="task-input" 
+              v-bind:value="enteredTodo" 
+              class="text-input" 
+              name="task-input" 
+              type="text"
+              v-on:input="setEnteredTodo"
+              > <!--atualiza o valor de enteredTodo com o valor do input-->
+
+              <!-- opção 2 com v:model
+                <input 
+              id="task-input" 
+              v-model="enteredTodo" 
+              class="text-input" 
+              name="task-input" 
+              type="text"
+              > 
+              -->
+            <button 
+            class="button" 
+            type="submit"
+            :disabled=" isDisabled">
+            Add Todo
+          </button>
+          </div>
+        </form>
+        <ul id="todo-list" v-if="todos.length > 0"> <!-- Alínea 7: se houver todos, o v-if adiciona/remove o elemento da DOM -->
+          <!-- Alínea 3: retire os comentários da <li> abaixo
+               e adicione as diretivas vue para renderizar a lista -->
+          <li class="todo-list-item"
+          v-for="(todo, index) in todos"
+            :key="index"> <!-- chave unica para cada elemento-->
+          <!-- ^ para cada elemento do array todos, vai criar um <li> com todo aquele conteúdo e poe se o index para ser unico -->
+            <p>{{todo}}</p>
+            <button 
+            type="button" 
+            @click="deleteTodo(index)"> <!-- tem por defeito o evento de clicar nele-->
+            Delete
+          </button> <!--chama a função deleteTodo ao clicar "click" no botao-->
+          </li>
+        </ul>
+  
+        <!-- Alínea 7: crie um elemento <h3> 
+             e adicione as diretivas necessárias a este elemento
+             e à lista <ul> acima -->
+        <h3 class=" subtitle no-todos" v-else>No todos for today!</h3> <!--se nao houver nenhum todo, aparece esta mensagem-->
+      </div>
+    </div>
+<!-- opção 2 com v-show: mantem o elemento na DOM e faz display:none
+        <ul id="todo-list" v-show="todos.length > 0">
+          ...
+        </ul>
+        <h3 class=" subtitle no-todos" v-show="todos.length === 0">No todos for today!</h3>
+-->
+    <script src="todo.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+^C:\USERS\EDUARDA\3ANO\2SEMESTRE\CG\SEMANA5\SOURCE AND CMAKE FILES (1)\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Eduarda/3Ano/2Semestre/CG/Semana5/source and cmake files (1)" "-BC:/Users/Eduarda/3Ano/2Semestre/CG/Semana5/source and cmake files (1)/build" --check-stamp-file "C:/Users/Eduarda/3Ano/2Semestre/CG/Semana5/source and cmake files (1)/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
