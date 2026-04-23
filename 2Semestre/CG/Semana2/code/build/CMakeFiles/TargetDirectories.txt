@@ -1,0 +1,3 @@
+C:/Users/Eduarda/3Ano/2Semestre/CG/Semana2/code/build/CMakeFiles/class2.dir
+C:/Users/Eduarda/3Ano/2Semestre/CG/Semana2/code/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Eduarda/3Ano/2Semestre/CG/Semana2/code/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+    <!-- Faz o site ser responsivo ajustando o viewport em dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Título mostrado na aba do navegador -->
+  <title>Jogo do Galo Coquette</title>
+    <!-- Estilos CSS embutidos para o layout do jogo -->
+     <!-- Favicon -->
+  <link rel="icon" href="pinkbow.png" type="image/png">
+  <style>
+        /* Variáveis CSS globais para tamanhos e configurações */
+    :root{
+      --size:600px; /* tamanho total da grelha */
+      --cells:3;    /* número de linhas/colunas */
+      --cell-size: calc(var(--size) / var(--cells));
+      --line: 3px;  /* grossura das linhas (pode ajustar) */
+    }
+        /* Estilos básicos do corpo da página */
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      display:flex;/* centra o conteúdo horizontal/verticalmente */
+      min-height:100vh; /* ocupa a altura total da viewport */
+      align-items:center;
+      justify-content:center;
+      margin:0;  /*remove margens padrão */
+      background:#FF9781;
+    }
+
+    /* Wrapper que contém o tabuleiro e os controlos */
+    .board-wrapper{
+      display:flex;
+      flex-direction:column; /*organiza elementos verticalmente */
+      gap:12px; /*espaçamento entre tabuleiro e controlos */
+      align-items:center; /*centra horizontalmente */
+    }
+    /* O tabuleiro em si, usando grid para 3x3 */
+    .board{
+      width:var(--size); /*largura definida pela variável size */
+      height:var(--size); /*altura definida pela variável size, altura igual à largura */
+      display:grid;
+      grid-template-columns:repeat(var(--cells), 1fr); /*3 colunas iguais */
+      grid-template-rows:repeat(var(--cells), 1fr);/*3 linhas iguais */
+      /* desfaz qualquer espaçamento interno */
+      box-sizing:border-box;
+      background:#FF99AC;
+    }
+        /* Cada célula do tabuleiro */
+    .cell{
+      /* centro do texto na horizontal e vertical */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:96px; /* grande para X/O tamanho grande para mostrar X/O */
+      user-select:none; /* evita seleção de texto ao clicar */
+      cursor:pointer; /* indica que é clicável */
+      /* linhas a preto delimitadoras (cada célula tem border) */
+      border: var(--line) solid black;
+      box-sizing:border-box;
+      transition:background-color 0.2s ease; /* transição suave ao hover */
+    }
+
+    /* efeito ao passar o rato */
+    .cell:hover{
+      background: #D77374;
+;
+    }
+
+    /* Estado para células já marcadas: desativa o pointer e ajusta opacidade */
+    .cell.taken{
+      cursor:default;
+      opacity:0.95;
+    }
+
+    /* Controlo exterior (botões e status) */
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    button{
+      padding:8px 12px; /*  */
+      font-size:16px;
+      border-radius:6px;
+      border:1px solid #000000;
+      background:#D77374;
+      cursor:pointer;
+    }
+    /* Texto do estado (quem joga / vencedor / empate) */
+    .status{
+      font-size:20px;
+    }
+
+    /* não é preciso, é apenas uma pequena responsividade: mantém grelha mas escala para caber na viewport menor */
+    @media (max-width:640px){
+      :root{--size:90vw;} /* para telemóveis,tamanho do tabuleiro passa a 90% da largura da viewport */
+      .cell{font-size:8vw} /* ajusta o tamanho do X/O em telemóveis */
+    }
+
+    
+  </style>
+</head>
+<!-- Corpo do documento com o tabuleiro e scripts -->
+<body>
+    <!-- Wrapper que agrupa tabuleiro e controlos -->
+  <div class="board-wrapper">
+        <!-- Elemento onde as células são adicionadas dinamicamente pelo JavaScript -->
+    <div class="board" id="board" aria-label="Grelha do Jogo do Galo">
+      <!-- 9 células geradas por JavaScript -->
+    </div>
+    <!-- Área com status do jogo e botão reiniciar -->
+    <div class="controls">
+            <!-- Mostra de quem é a vez ou o resultado -->
+      <div class="status" id="status">Vez de: X</div>
+      <button id="reset">Reiniciar</button>
+    </div>
+  </div>
+    
+  <script>
+    // Cria a grelha 3x3 e aplica comportamentos: alterna X/O, evita sobrescrever e deteta vencedor.
+    const BOARD = document.getElementById('board');
+    const STATUS = document.getElementById('status');
+    const RESET = document.getElementById('reset');
+
+        /* Constantes e variáveis do estado do jogo */
+    const CELLS = 9; /* número total de células (3x3) */
+    let turn = 'X'; /* jogador atual: 'X' ou 'O' */
+    let boardState = Array(CELLS).fill('');  /* array que guarda o estado de cada célula */
+    let running = true; /* indica se o jogo está em curso */
+    
+    /* Função que cria os elementos das células e os anexa ao tabuleiro */
+    function createCells(){
+      BOARD.innerHTML = ''; /* limpa o conteúdo anterior (se existir) */
+      for(let i=0;i<CELLS;i++){
+        const div = document.createElement('div'); /* cria uma célula */
+        div.className = 'cell';
+        div.dataset.index = i; /* guarda o índice da célula para referência */
+        div.setAttribute('role','button'); /* acessibilidade: comporta-se como botão */
+        div.setAttribute('aria-label',`Célula ${i+1}`);  /* rótulo para leitores de ecrã */
+        div.addEventListener('click', onClickCell); /*evento de clique */
+        BOARD.appendChild(div);
+      }
+    }
+        /* Manipulador de clique numa célula */
+    function onClickCell(e){
+      if(!running) return; /* se o jogo acabou, ignora cliques */
+      const idx = Number(e.currentTarget.dataset.index);  /* índice da célula clicada */
+      // Se a célula já estiver ocupada, mostra um alerta e sai sem alterar nada.
+      if (boardState[idx]) {
+      window.alert('Célula já preenchida');
+      return; // evita sobrescrever uma célula já ocupada com um alerta de janela
+      }
+
+      boardState[idx] = turn; /* regista a jogada no estado */
+      e.currentTarget.textContent = turn; /*mostra X ou O na célula */
+      e.currentTarget.classList.add('taken'); /*marca a celula como ocupada */
+      /*se eu quiser adicionar um erro quando se tenta clicar numa celula ocupada, posso fazer aqui,usando um alerta window.alert*/
+      /*if(boardState[idx]) {
+        e.currentTarget.classList.add('taken');
+        window.alert(`Célula ${idx+1} já ocupada`);
+        return;
+      }*/
+
+      if(checkWin(turn)){
+        STATUS.textContent = `Vencedor: ${turn}`; /*informa o vencedor */
+        running = false; /*termina o jogo */
+        return;
+      }
+
+      if(boardState.every(v=>v)){
+        STATUS.textContent = 'Empate!'; /* todas as células preenchidas sem vencedor */
+        running = false;
+        return;
+      }
+      // alterna jogador
+      turn = turn === 'X' ? 'O' : 'X';
+      STATUS.textContent = `Vez de: ${turn}`;
+    }
+        /* Função que verifica se um jogador ganhou */
+    function checkWin(player){
+            /* Linhas vencedoras possíveis (índices das células) */
+      const winLines = [
+        [0,1,2], [3,4,5], [6,7,8], // linhas
+        [0,3,6], [1,4,7], [2,5,8], // colunas
+        [0,4,8], [2,4,6]           // diagonais
+      ];
+
+      for(const [a,b,c] of winLines){
+        if(boardState[a] === player && boardState[b] === player && boardState[c] === player){
+          // destaca as células vencedoras
+          [a,b,c].forEach(i => {
+            const cell = BOARD.querySelector(`[data-index='${i}']`);
+            if(cell) cell.style.background = '#d4f7d4';
+          });
+          return true; /*há vitória*/
+        }
+      }
+      return false;
+    }
+    /* Evento do botão Reiniciar: limpa o estado e o tabuleiro */
+    RESET.addEventListener('click', ()=>{
+      boardState.fill(''); /* limpa o array de estado */
+      turn = 'X'; /* reinicia com X */
+      running = true; /* permite jogar novamente */
+      STATUS.textContent = `Vez de: ${turn}`; /* atualiza o status */
+/* remove texto e estilos inline das células */
+      BOARD.querySelectorAll('.cell').forEach(c => {
+        c.textContent = '';
+        c.classList.remove('taken');
+        c.style.background = '';
+      });
+    });
+
+    // inicializa: cria as células ao carregar
+    createCells();
+  </script>
+</body>
+</html>
