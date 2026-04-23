@@ -23,10 +23,10 @@
 ## Imagens do Output
 
 ### Execução com `%p`:
-![Execução com %p](ex7_screenshot)
+![Execução com %p](ex7_screenshot.png)
 
 ### Execução com `%x`:
-![Execução com %x](ex7_2_screenshot)
+![Execução com %x](ex7_2_screenshot.png)
 
 ## Explicação do Mecanismo
 Cada especificador `%p` ou `%x` faz com que o `printf` leia e imprima valores da stack. O `printf` não verifica se os argumentos correspondentes foram passados porque ele não tem informações sobre o número de argumentos reais. Ele apenas lê os valores da stack com base nos especificadores fornecidos na string de formato. Isso ocorre porque o `printf` usa a string de formato para determinar como acessar os argumentos na stack, mas não tem como verificar se os argumentos realmente existem.
