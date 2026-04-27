@@ -94,3 +94,5 @@ Esta exploração demonstra:
 - Não usar entrada de utilizador diretamente como string de formato
 - Validar e sanitizar todas as entradas
 - Usar especificadores de formato fixos (ex: `printf("%s\n", input)` em lugar de `printf(input)`)
+
+
