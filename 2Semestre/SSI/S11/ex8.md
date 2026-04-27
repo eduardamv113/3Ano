@@ -12,7 +12,7 @@ Usar uma sequência longa de especificadores `%p` para explorar a stack e locali
 
 Este comando gera 30 especificadores `%p` consecutivos para explorar a stack.
 
-## Execução e Resultados
+## Exercício 1: Execução e Resultados
 
 ### Screenshot
 ![Execução com múltiplos especificadores %p](ex8_screenshot.png)
@@ -25,7 +25,7 @@ Este comando gera 30 especificadores `%p` consecutivos para explorar a stack.
 [*] Normal programme termination.
 ```
 
-### Análise Detalhada
+### Exercício 2: Análise Detalhada
 
 **Endereço de `secret` impresso pelo programa: `0x7fff4b859a40`**
 
@@ -88,6 +88,23 @@ Esta exploração demonstra:
 2. O atacante pode localizar valores sensíveis sem conhecer seus endereços exatos
 3. Uma sequência de especificadores permite mapear e encontrar dados interessantes
 4. O valor foi encontrado na 8ª posição, que é consistente na execução
+
+## Exercício 3: Riscos das Vulnerabilidades de String de Formato
+
+### Explicação
+Este exercício demonstra os riscos associados às vulnerabilidades de string de formato, que permitem a um atacante explorar a memória do processo. Especificamente, um atacante pode:
+
+1. **Recuperar informações sensíveis:**
+   - Endereços de memória.
+   - Dados armazenados na stack, heap ou outras regiões do espaço de endereçamento do processo.
+   - Variáveis privadas, como senhas ou chaves secretas.
+
+2. **Zona do espaço de endereçamento:**
+   - A exploração ocorre principalmente na **stack**, onde os valores das variáveis locais e os endereços de retorno são armazenados.
+   - Dependendo da implementação, também é possível acessar dados da **heap** ou até mesmo da **área de código**.
+
+### Conclusão
+As vulnerabilidades de string de formato representam um risco significativo, pois permitem que um atacante leia (ou até sobrescreva) dados críticos do processo, comprometendo a segurança do sistema.
 
 ## Mitigações
 
