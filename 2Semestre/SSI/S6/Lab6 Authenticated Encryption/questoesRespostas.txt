@@ -1,0 +1,68 @@
+- Questao 1 -
+No ataque de length extension, o padding não é calculado apenas sobre a mensagem visivel m, mas sim sobre k || m, porque o MAC vulnerável é construído como:
+
+MAC(k, m) = SHA256(k || m)
+
+Neste caso, a chave tem 32 bytes e a mensagem
+"http://www.super-secret.com/manage?id=1001&role=user&perm=read"
+tem 62 bytes. Logo, o SHA256 calcula o padding sobre um total de 94 bytes. (32+62 = 94 bytes)
+
+Como o SHA256 trabalha em blocos de 64 bytes, o padding e composto por:
+1. um byte 0x80;
+2. zeros 0x00 ate o comprimento ficar congruente com 56 modulo 64;
+3. 8 bytes finais com o comprimento original em bits.
+
+O comprimento original é 94 bytes, ou seja:
+
+94 x 8 = 752 bits = 0x02f0
+
+Assim, os 8 bytes finais do comprimento sao:
+
+00 00 00 00 00 00 02 f0
+
+Logo, o padding acrescentado é:
+
+80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 f0
+
+Este padding tem 34 bytes no total:
+- 1 byte com o valor 0x80;
+- 25 bytes com o valor 0x00;
+- 8 bytes finais com o comprimento da mensagem original em bits.
+
+Por isso, a mensagem forjada produzida pelo ataque fica com a forma:
+
+m || padding || &admin=true
+
+
+- Questao 2 -
+
+Ao cifrar a mesma mensagem com pbenc_aes_ctr_hmac.py e com pbenc_aes_gcm.py, os criptogramas produzidos sao diferentes tanto no conteudo como no tamanho.
+
+Em ambos os casos, nao ha padding da mensagem, porque tanto o modo CTR como o GCM funcionam como cifras de sequencia: o ciphertext tem exatamente o mesmo tamanho do plaintext. A diferenca no tamanho final do ficheiro resulta apenas dos metadados e do mecanismo de autenticacao que cada solucao acrescenta.
+
+No programa pbenc_aes_ctr_hmac.py, o ficheiro produzido tem a forma:
+
+salt (16 bytes) || nonce (16 bytes) || ciphertext (mesmo tamanho da mensagem) || tag HMAC-SHA256 (32 bytes)
+
+Logo, o tamanho final e:
+
+tamanho da mensagem + 16 + 16 + 32 = tamanho da mensagem + 64 bytes
+
+No programa pbenc_aes_gcm.py, o ficheiro produzido tem a forma:
+
+salt (16 bytes) || nonce (12 bytes) || ciphertext (mesmo tamanho da mensagem) || tag GCM (16 bytes)
+
+Logo, o tamanho final e:
+
+tamanho da mensagem + 16 + 12 + 16 = tamanho da mensagem + 44 bytes
+
+Assim, o ficheiro produzido por AES-GCM fica, neste caso, 20 bytes mais pequeno do que o produzido por AES-CTR + HMAC.
+
+O motivo desta diferenca e que, em pbenc_aes_ctr_hmac.py, a autenticacao e feita externamente com HMAC-SHA256, o que exige:
+- uma segunda chave derivada pela KDF;
+- uma tag de 32 bytes;
+- um nonce de 16 bytes para o modo CTR.
+
+Ja em pbenc_aes_gcm.py, a autenticacao esta integrada no proprio modo GCM, que produz diretamente uma tag de 16 bytes e usa tipicamente um nonce de 12 bytes. Por isso, AES-GCM combina confidencialidade e integridade de forma mais compacta e eficiente.
+
+Conclui-se entao que, embora AES-GCM use internamente AES em modo semelhante a CTR para cifrar, o criptograma final nao e igual ao de AES-CTR + HMAC: tem estrutura diferente, inclui uma tag de autenticacao diferente e, nesta implementacao, resulta num ficheiro final mais pequeno.
